@@ -33,7 +33,11 @@ class item:
 		self.desc=desc
 		self.uses=uses
 		self.ident = ident
-		self.isConsumable=consumable
+		if consumable=='True':
+			self.isConsumable=True
+		else:
+			self.isConsumable=False
+
 		if self.uses==None:
 			self.uses={}
 
@@ -53,6 +57,17 @@ class actor:
 	def addLine(self,lines):
 		self.lines.update(lines)
 		return 0
+
+	def addItem(self,item):
+		self.inventory.update(item)
+		return 0
+
+	def giveItem(self,item,target):
+		if item in self.inventory.keys():
+			target.inventory[item]=self.inventory.pop(item)
+			return 0
+		else:
+			return 1
 
 class player:
 	def __init__(self,name='',desc='',inventory=None,location=None):
@@ -87,17 +102,36 @@ class player:
 
 	def takeItem(self,item):
 		if item in self.location.objects:
-			self.inventory[item] = self.location.objects.pop[item]
+			self.inventory[item] = self.location.objects.pop(item)
 			return 0
 		else:
 			return -1
 
 	def giveItem(self,item,target):
 		if item in self.inventory:
-			target.inventory[item]=self.intentory.pop[item]
+			target.inventory[item]=self.intentory.pop(item)
 			return 0
 		else:
 			return -1
+
+	def tell(self,query,target):
+		if target in self.location.occupants.keys():
+			person = self.location.occupants[target]
+			if query in person.lines.keys():
+				response = person.lines[query]
+				if response[0]=='say':
+					return response[1]
+				else:
+					if not (person.giveItem(response[1],self)):
+						return ['RECV',response[1],'FRM',person.name]
+					else:
+						return ['NOLONGER',person.name]
+			else:
+				return "NOTHOLDING"
+
+		else:
+			return "NOTINROOM"
+
 	def use(self,thing,on):
 		if thing not in self.inventory.keys() or on not in self.inventory.keys():
 			return -2
