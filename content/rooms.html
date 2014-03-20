@@ -1,10 +1,30 @@
-<room ident = "1" name="First room" desc="The initial room for testing purposes">
-	<actor ident='pman'>
-	<item ident='stool'>
-	<exit door='north' target='2'
+<room ident = "0" name="Un Carrefour" desc="Vous êtes à un carrefour.">
+	<actor ident='theo'>
+	<exit door='north' target='0.1'>
+	<exit door='south' target='0.2'>
+	<exit door='east' target='1'>
+	<exit door='west' target='0.3'>
 </room>
-<room ident = '2' name='Second room' desc='The second room for testing purposes'>
-	<actor ident='bman'>
-	<item ident='bmob'>
+<room ident = '0.1' name='La Boucher' desc="Vous êtes en face d'une boucherie. Il est fermé.">
+	<exit door='south' target='0'>
+</room>
+<room ident = '0.2' name='Le Cinéma' desc="Vous êtes devant le cinéma abandonné. Vous ne voyez rien d'intéressant.">
+	<exit door='north' target='0'>
+</room>
+<room ident = '0.3' name="La Plage" desc="Cette une belle plage. On peut écouter à les chants d'oiseaux.">
+	<actor ident='av'>
+	<exit door='east' target='0'>
+</room>
+<room ident='1' name='La Boulangerie' desc="Vous êtes dans la boulangerie de Olivier. Vous pouvez sentir des baguettes et des croissants frais">
+	<actor ident='olivier'>
+	<exit door='west' target='0'>
+	<exit door='north' target='1.1'>
+	<exit door='south' target='1.2'>
+</room>
+<room ident='1.1' name='La Boulangerie' desc='Vous êtes dans la boulangerie de Olivier. Vous vous sentez chaud parce que vous êtes à côté du four'>
 	<exit door='south' target='1'>
+</room>
+<room ident='1.2' name='La Boulangerie' desc="Vous êtes dans la boulangerie de Olivier. Vous êtes entre les étagères  de toutes sortes de pains.">
+	<exit door='north' target='1'>
+	<item ident='phone'>
 </room>

@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from bs4 import BeautifulSoup
 import models
 import os
@@ -20,6 +21,7 @@ class engine:
 			itemsFile = open(itemsfn,'r')
 		except:
 			print "File "+itemsfn+" does not exist"
+			return -1
 
 		itemSoup = BeautifulSoup(itemsFile)
 		entries = map(createItem,itemSoup.find_all('item'))
@@ -38,7 +40,7 @@ class engine:
 			lines = soupobject.find_all('line')
 
 			for i in lines:
-				a.addLine({i['key']:(i['method'],i.text)})
+				a.addLine(i['key'],i['need'],i.text,i['gift'])
 
 			items = soupobject.find_all('item')
 
@@ -64,26 +66,60 @@ class engine:
 		charsFile.close()
 		return self.allActors
 
-	#def populateItems(self):
+	def populateRooms(self,roomsfn):
+		def dig(soupObject):
+			a = self.allRooms[soupObject['ident']]
 
-	#def populateRooms(self):
+			for i in soupObject.find_all('exit'):
+				a.addDoor(i['door'],self.allRooms[i['target']])
+
+			return 0
+
+		def createRoom(soupobject):
+			a = models.room(ident=soupobject['ident'],name=soupobject['name'],desc=soupobject['desc'])
+
+			actors = soupobject.find_all('actor')
+			for i in actors:
+				if i['ident'] in self.allActors.keys():
+					a.addActor({i['ident']:self.allActors[i['ident']]})
+				else:
+					print "Your allActors is incomplete. Make sure that it is defined in your actors file and that you ran populateActors first"
+
+			items = soupobject.find_all('item')
+			for i in items:
+				if i['ident'] in self.allItems.keys():
+					a.addItem({i['ident']:self.allItems[i['ident']]})
+				else:
+					print "Your allItems is incomplete."
+
+			return a
+
+
+		try:
+			roomsFile = open(roomsfn,'r')
+		except:
+			print "File "+roomsfn+" does not exist"
+			return -1
+
+		roomSoup = BeautifulSoup(roomsFile)
+		entries = map(createRoom,roomSoup.find_all('room'))
+		self.allRooms = enginescripts.createDict(entries)
+
+		map(dig,roomSoup.find_all('room'))
+		roomsFile.close()
+		return self.allRooms
 
 	#def save(self,name):
 
 	#def load(self,name):
+def tester():
+	engie = engine()
+	rootfn = "..\\content\\"
+	engie.populateItems(rootfn+"items.html")
+	engie.populateActors(rootfn+"characters.html")
+	engie.populateRooms(rootfn+"rooms.html")
+	player = models.player(location=engie.allRooms['0'])
+	return player
 
 if __name__=='__main__':
-	engie = engine()
-	charsfn = "..\\content\\characters.html"
-	engie.populateItems("..\\content\\items.html")
-
-	e = engie.populateActors(charsfn)
-
-	print engie.allActors
-
-	print engie.allActors['pman'].lines['bonjour'][1]
-
-
-	print engie.allItems
-
-	print engie.allActors['bman'].inventory
+	engie = tester()
