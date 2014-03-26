@@ -1,9 +1,14 @@
 <actor ident='theo' name='Theo' desc="Theo est un homme anglais.  Il a d'argent, mais il est très paresseux.">
 	<line key='bonjour' need='' gift=''>Bonjour!</line>
 	<line key='who' need='' gift=''>Je m'appelle Theo. Je suis un jouer au foot. J'aime l'équipe de Paris Saint-Germain, et mon joueur préféré est Zlatan.</line>
-	<line key='how' need='' gift='money'>J'ai faim. Pouvez-vous me acheter une baguette? Je ne peux pas parce que je suis fatigué! Si vous m'aidez, je vais te dire un message de votre petite-amie. </line>
+	<line key='how' need='money' gift='money'>J'ai faim. Pouvez-vous me acheter une baguette? Je ne peux pas parce que je suis fatigué! Si vous m'aidez, je vais te dire un message de votre petite-amie. </line>
+	<line key='how' need='' gift=''>Ou est ma baguette?!</line>
+	<line key='here' need='message' gift='message'>Il est pour toi.</line>
 	<line key='here' need='baguette' gift='message'>Merci! Voila, le message de votre petite-amie.</line>
+
+
 	<line key='here' need='money' gift='money'>Merde! Cette n'est pas une baguette!</line>
+	<line key='here' need='phone' gift='phone'>Non.</line>
 	<item ident='money'>
 	<item ident='message'>
 	<line key='how' need='baguette' gift=''>Ça va.</line>
@@ -14,10 +19,13 @@
 	<line key ='who' need='' gift=''>Je m'appelle Olivier. J'ai trente-trois ans. Je suis un boulangier. Je déteste les animaux, tous les animaux. Mon rêve, faire cuire le croissant parfait!</line>
 	<line key='how' need='' gift=''>Comme ci, comme ça. Donnez-moi l'argent pour la baguette?</line>
 	<line key='acheter' need='' gift=''>Donnez-moi l'argent d'abord!</line>
+	<line key='here' need='baguette' gift='baguette'>Porqoui vous me donnez la baguette?</line>
 	<line key='here' need='money' gift='baguette'>Voila! Une baguette pour toi.</line>
+	<line key='here' need='phone' gift='phone'>Ce n'est pas mon portable.</line>
+	<line key='here' need='message' gift='message'>Ce n'est pas pour moi.</line>
 	<item ident='baguette'>
 </actor>
-<actor ident='av' name='Anne-Victoire' desc="Anne-Victoire est française. Elle est très jolie.">
+<actor ident='av' name='Anne-Victoire' desc="Anne-Victoire est une femme française. Elle est très jolie.">
 	<line key='bonjour' need='' gift=''>Bonjour! Il fait beau, non?</line>
 	<line key='bonjour' need='message' gift=''>Bonjour!</line>
 	<line key='who' need='' gift=''>C'est moi, ta petite-amie, Anne-Victoire! J'aime la voyage et l'anime. J'adore ma chienne mignon, Amélie. J'aime le musique de Stromae.</line>
@@ -25,5 +33,7 @@
 	<line key='how' need='message' gift=''>Salut! Tu as trouvé mon portable?</line>
 	<line key='here' need='message' gift=''>Très mal! J'ai perdu mon téléphone portable! Comment vais-je communiquer avec ma mère? Tu peux chercher mon portable pour moi? Je pense je l'ai perdu quand je suis allée le boulangerie hier</line>
 	<line key='here' need='phone' gift='hug'>Oh! Tu as trouvé mon portable! Tu es le meilleur! Merci beaucoup! Alors, nous avons sortir ce soir!</line>
+	<line key='here' need='money' gift='money'>Non, merci.</line>
+	<line key='here' need='baguette' gift='baguette'>Je n'ai pas faim.</line>
 	<item ident='hug'>
 </actor>

@@ -151,6 +151,8 @@ class player:
 		return self.location.lookAt()
 
 	def showInventory(self):
+		if len(self.inventory)==0:
+			return "Vous n'avez rien"
 		rstr = "Vouz avez: "
 		for i in self.inventory.values():
 			rstr = rstr+i.name+", "
@@ -162,20 +164,21 @@ class player:
 			self.location=self.location.doors[door]
 			return self.location.lookAt()
 		else:
-			return -1
+			return -30
 
 	def takeItem(self,item):
+		itemname=item
 		item = self.getKeyFromName(item,self.location.objects)
 		if item==-1:
-			return -1
+			return -20
 		self.inventory[item] = self.location.objects.pop(item)
-		return 0
+		return "Vous avez "+itemname
 
 
 	def giveItem(self,item):
 		item = self.getKeyFromName(item,self.inventory)
 		if item==-1:
-			return -1
+			return -40
 		self.location.occupants.values()[0].inventory[item]=self.inventory.pop(item)
 		return self.tell('here')
 

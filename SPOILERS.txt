@@ -1,0 +1,29 @@
+SPOILERS!
+1. Theo
+	Parlez Bonjour
+	Parlez Vous vous appelez comment?
+	Parlez Comment allez vous?
+	Allez a droite
+2. Olivier
+	Parlez Bonjour
+	Parlez Vous vous appelez comment?
+	Parlez Comment allez vous?
+	Donnez un peu d'argent
+	Allez a gauche
+3. Theo again
+	Donnez une baguette
+	Regardez un message de Anne-Victoire
+	Allez a gauche
+4. Anne-Victoire
+	Parlez Bonjour
+	Parlez Vous vous appelez comment?
+	Parlez Comment allez vous?
+	Donnez un message de Anne-Victoire
+	Allez a droite
+	Allez a droite
+	Allez derriere
+	Prenez le portable de Anne-Victoire
+	Allez tout droit
+	Allez a gauche
+	Allez a gauche
+	Donnez le portable de Anne-Victoire
