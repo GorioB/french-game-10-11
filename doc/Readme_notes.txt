@@ -1,0 +1,1 @@
+Some game data is still hardcoded into the engine/models itself (in french). This should be fixed to improve portability. Need a better way to populate data for the engine and language parser.
